@@ -57,12 +57,6 @@ export default {
     const camera = new THREE.PerspectiveCamera(45, width / height);
     camera.position.set(80, 80, 80);
 
-    // 軸の設定
-    const axisLength = 50;
-    scene.add(new Axis('x', axisLength, 0x0000ff));
-    scene.add(new Axis('y', axisLength, 0x00ff00));
-    scene.add(new Axis('z', axisLength, 0xff0000));
-
     // マウスでカメラ移動が可能になる
     const controls = new OrbitControls(camera, renderer.domElement);
 
@@ -74,12 +68,15 @@ export default {
       camera,
       controls,
       stats,
-      axisLength,
     };
   },
 
   mounted() {
-    const scale = this.axisLength;
+    // 軸の設定
+    const axisLength = 50;
+    this.scene.add(new Axis('x', axisLength, 0x0000ff));
+    this.scene.add(new Axis('y', axisLength, 0x00ff00));
+    this.scene.add(new Axis('z', axisLength, 0xff0000));
 
     // 各点を取得
     const vectors = mnistPCA.map(x => x.vector);
@@ -98,9 +95,9 @@ export default {
     this.miniIcons.onload = () => {
       mnistPCA.forEach((x, i) => {
         // xs, ys, zsは[-1, 1]の間の座標なので拡大してやる
-        const dx = xs[i] * scale;
-        const dy = ys[i] * scale;
-        const dz = zs[i] * scale;
+        const dx = xs[i] * axisLength;
+        const dy = ys[i] * axisLength;
+        const dz = zs[i] * axisLength;
 
         const left = mnistPCA[i].box[0];
         const top = mnistPCA[i].box[1];
