@@ -12,13 +12,12 @@ class DataPoint extends THREE.Mesh {
 // */
 
 class DataPoint extends THREE.Sprite {
-  constructor(radius, x, y, z, image) {
+  constructor(scale, x, y, z, image) {
     const material = new THREE.SpriteMaterial({
       map: new THREE.TextureLoader().load(image),
     });
     super(material);
     this.position.set(x, y, z);
-    const scale = 5;
     this.scale.set(scale, scale, scale);
   }
 }

@@ -101,7 +101,7 @@ export default {
           left, top, 28, 28,
           0, 0, canvas.width, canvas.height);
 
-        this.scene.add(new DataPoint(1, dx, dy, dz, canvas.toDataURL()));
+        this.scene.add(new DataPoint(5, dx, dy, dz, canvas.toDataURL()));
       });
       this.$refs.stage.appendChild(this.renderer.domElement);
       this.$refs.stage.appendChild(this.stats.dom);
